@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>搜索</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+<h1>🔍 搜索</h1>
+
+<input 
+  type="text" 
+  id="searchInput" 
+  placeholder="输入关键词（如：辛温 / 阴阳）"
+  oninput="search()"
+/>
+
+<div id="results"></div>
+
+</div>
+
+<script>
+const data = [
+  {
+    name: "桂枝",
+    subject: "中药学",
+    chapter: "解表药",
+    content: "辛甘温 解肌发表 温通经脉",
+    link: "zhongyao/jiebiao/guizhi.html"
+  },
+  {
+    name: "阴阳概念",
+    subject: "中医基础理论",
+    chapter: "阴阳学说",
+    content: "阴阳者天地之道也 对立统一",
+    link: "zhongji/yinyang/yinyang.html"
+  }
+];
+
+function search() {
+  const keyword = document.getElementById("searchInput").value.trim();
+  const results = document.getElementById("results");
+
+  results.innerHTML = "";
+
+  if (keyword === "") return;
+
+  data.forEach(item => {
+    if (
+      item.name.includes(keyword) ||
+      item.content.includes(keyword)
+    ) {
+      let div = document.createElement("div");
+
+      div.className = "card";
+
+      div.innerHTML = `
+        <a href="${item.link}">
+          <strong>${item.name}</strong><br>
+          <span class="badge">${item.subject} · ${item.chapter}</span>
+        </a>
+      `;
+
+      results.appendChild(div);
+    }
+  });
+}
+</script>
+
+</body>
+</html>
