@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>敬请期待</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+<div class="card">
+  <h1>🚧 医案未成，暂不可用 🚧</h1>
+  <p>作者还在背书中，请稍等... 👀</p>
+</div>
+
+<div class="card">
+  <h3>🌿 今日中医小知识</h3>
+  <p id="fact"></p>
+</div>
+
+<div class="card">
+  <button onclick="randomPage()">🎲 随机跳转页面</button>
+</div>
+
+<div class="card">
+  <a href="index.html">🏠 返回首页</a>
+</div>
+
+</div>
+
+<script>
+// 🌿 fun facts（你可以自己加）
+const facts = [
+  "肺为娇脏，喜润恶燥",
+  "肝主疏泄，调畅气机",
+  "阳主动，阴主静",
+  "气为血之帅，血为气之母",
+  "脾为后天之本"
+];
+
+// 🎲 随机显示一个
+document.getElementById("fact").innerText =
+  facts[Math.floor(Math.random() * facts.length)];
+
+
+// 🎲 随机跳转（你可以加更多）
+function randomPage() {
+  const pages = [
+    "中药学/解表药/guizhi.html",
+    "中医基础理论/阴阳学说/yinyang.html"
+  ];
+
+  const random = pages[Math.floor(Math.random() * pages.length)];
+  window.location.href = random;
+}
+</script>
+
+</body>
+</html>
