@@ -16,7 +16,7 @@
 <div class="card">
   <a href="../../index.html">🏠 首页</a> >
   <a href="../index.html">中药学</a> >
-  <a href="../jiebiao.html">解表药</a> >
+  <span>解表药</span> >
   <span>葱白</span>
 </div>
 
@@ -43,19 +43,19 @@
 
 <h3>🔊 朗读</h3>
 
-<button onclick="speakAll()">▶️ 朗读全部</button>
-<button onclick="speakMnemonic()">📜 只读歌诀</button>
+<button class="btn" onclick="speakAll()">▶️ 朗读全部</button>
+<button class="btn" onclick="speakMnemonic()">📜 只读歌诀</button>
 
 <!-- 🎚️ 美化语速滑条 -->
 <br><br>
 <label for="rate">语速：</label>
-<input type="range" id="rate" min="0.5" max="1.5" step="0.1" value="0.9">
+<input type="range" id="rate" min="0.5" max="1.5" step="0.1" value="0.9">&nbsp;
 <span id="rateValue">0.9</span>
 
 <br><br>
-<button onclick="pause()">⏸️ 暂停</button>
-<button onclick="resume()">▶️ 继续</button>
-<button onclick="stop()">⏹️ 停止</button>
+<button class="btn" onclick="pause()">⏸️ 暂停</button>
+<button class="btn" onclick="resume()">▶️ 继续</button>
+<button class="btn" onclick="stop()">⏹️ 停止</button>
 
 </div>
 
