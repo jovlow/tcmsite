@@ -22,6 +22,8 @@
 
 <div class="card">
 <h1>🌿 白芷</h1>
+<h3 style="text-align:center;">[bái zhǐ]</h3>
+<h3 style="text-align:center; color: #4792c5"><i>掌握药</i></h3>
 
 <h3>📜 歌诀</h3>
 <p id="mnemonic">
@@ -42,6 +44,12 @@
   3. 鼻鼽，鼻渊，鼻塞流涕<br>
   4. 带下<br>
   5. 疮疡肿痛
+</p>
+
+<h3>🧠 快快记忆口诀</h3>
+<p id="kkjkj" style="color:#b7a6d8">
+  细芷借三区桶鼻敲。新闻非花银，只找袋重农。<br>
+  (细芷解散祛痛鼻窍，辛温肺化饮，芷燥带肿脓)
 </p>
 
 <h3>🔊 朗读</h3>
@@ -78,7 +86,7 @@ const rateValue = document.getElementById("rateValue");
 function updateRateBackground() {
   rateValue.innerText = rateSlider.value;
   const percent = (rateSlider.value - rateSlider.min) / (rateSlider.max - rateSlider.min) * 100;
-  rateSlider.style.background = `linear-gradient(to right, #4CAF50 0%, #4CAF50 ${percent}%, #ddd ${percent}%, #ddd 100%)`;
+  rateSlider.style.background = `linear-gradient(to right, #3498db 0%, #3498db ${percent}%, #ddd ${percent}%, #ddd 100%)`;
 }
 
 // 页面加载时初始化背景
@@ -150,7 +158,7 @@ function stop() { speechSynthesis.cancel(); }
   max-width: 300px;
   height: 8px;
   border-radius: 6px;
-  background: linear-gradient(to right, #4CAF50 0%, #4CAF50 50%, #ddd 50%, #ddd 100%);
+  background: linear-gradient(to right, #3498db 0%, #3498db 50%, #ddd 50%, #ddd 100%);
   outline: none;
   transition: background 0.3s;
   margin-top: 5px;
@@ -164,14 +172,14 @@ function stop() { speechSynthesis.cancel(); }
   height: 24px;
   border-radius: 50%;
   background: #fff;
-  border: 2px solid #4CAF50;
+  border: 2px solid #3498db;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
   transition: background 0.2s, transform 0.2s;
 }
 
 #rate::-webkit-slider-thumb:hover {
-  background: #4CAF50;
+  background: #3498db;
   transform: scale(1.2);
 }
 
@@ -181,7 +189,7 @@ function stop() { speechSynthesis.cancel(); }
   height: 24px;
   border-radius: 50%;
   background: #fff;
-  border: 2px solid #4CAF50;
+  border: 2px solid #3498db;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }

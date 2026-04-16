@@ -2,45 +2,196 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>麻黄</title>
+  <!-- 📱 手机优化 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>🌿 蔓荆子</title>
   <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
 
 <div class="container">
 
+<!-- 🧭 面包屑导航 -->
 <div class="card">
-<h1>🌿 麻黄</h1>
+  <a href="../../index.html">🏠 首页</a> >
+  <a href="../index.html">中药学</a> >
+  <a href="index.html">解表药</a> >
+  <span>蔓荆子</span>
+</div>
+
+<div class="card">
+<h1>🌿 蔓荆子</h1><br>
+<h3 style="text-align:center;">[màn jīng zǐ]</h3>
+<h3 style="text-align:center; color: #4792c5"><i>熟悉药</i></h3>
 
 <h3>📜 歌诀</h3>
-<p>
-  麻黄辛苦温肺膀，发汗解表最为强<br>
-  利水消肿见即用，宣肺平喘其在行
+<p id="mnemonic">
+  蔓荆微寒味辛苦，齿龈肿痛风热疏；<br>
+  归属肝肺膀胱经，清利头目药上行。
 </p>
 
 <h3>🌿 性味归经</h3>
-<p>辛、微苦，温。归肺、膀胱经。</p>
+<p id="property">辛、苦，微寒。膀胱、肝、胃经。</p>
 
 <h3>⚡ 功效</h3>
-<p>发汗解表，宣肺平喘，利水消肿。</p>
+<p id="effect">疏散风热，清利头目。</p>
 
 <h3>🫧 应用</h3>
-<p>
-  1. 风寒感冒<br>
-  2. 胸闷喘咳<br>
-  3. 风水浮肿<br>
+<p id="usage">
+  1. 风热感冒头痛<br>
+  2. 目赤多泪，目暗不明，齿龈肿痛<br>
+  3. 头晕目眩
 </p>
 
-<h3>🔊 音频</h3>
-<audio controls loop>
-  <source src="../../audio/mahuang.mp3">
-</audio>
+<h3>🧠 快快记忆口诀</h3>
+<p id="kkjkj" style="color:#b7a6d8">
+  镜子梳头，不喝咽真干。<br>
+  (荆子疏头，薄荷咽疹肝)
+</p>
+
+<h3>🔊 朗读</h3>
+
+<button class="btn" onclick="speakAll()">▶️ 朗读全部</button>
+<button class="btn" onclick="speakMnemonic()">📜 只读歌诀</button>
+
+<!-- 🎚️ 美化语速滑条 -->
+<br><br>
+<label for="rate">语速：</label>
+<input type="range" id="rate" min="0.5" max="1.5" step="0.1" value="0.9">&nbsp;
+<span id="rateValue">0.9</span>
+
+<br><br>
+<button class="btn" onclick="pause()">⏸️ 暂停</button>
+<button class="btn" onclick="resume()">▶️ 继续</button>
+<button class="btn" onclick="stop()">⏹️ 停止</button>
 
 </div>
 
 <a href="../index.html">⬅ 返回中药学</a>
 
 </div>
+
+<!-- 🌿 JS部分 -->
+<script>
+let utterance;
+
+// 🎚️ 获取滑条元素
+const rateSlider = document.getElementById("rate");
+const rateValue = document.getElementById("rateValue");
+
+// 更新背景函数
+function updateRateBackground() {
+  rateValue.innerText = rateSlider.value;
+  const percent = (rateSlider.value - rateSlider.min) / (rateSlider.max - rateSlider.min) * 100;
+  rateSlider.style.background = `linear-gradient(to right, #3498db 0%, #3498db ${percent}%, #ddd ${percent}%, #ddd 100%)`;
+}
+
+// 页面加载时初始化背景
+window.addEventListener('load', updateRateBackground);
+
+// 滑条改变时更新背景
+rateSlider.addEventListener("input", updateRateBackground);
+
+// 获取当前语速
+function getRate() {
+  return parseFloat(rateSlider.value);
+}
+
+// 获取中文语音
+function getChineseVoice() {
+  const voices = speechSynthesis.getVoices();
+  return voices.find(v => v.lang.includes("zh"));
+}
+
+// 🎧 朗读全部
+function speakAll() {
+  stop();
+
+  let text = 
+    document.getElementById("mnemonic").innerText + "。" +
+    document.getElementById("property").innerText + "。" +
+    document.getElementById("effect").innerText + "。" +
+    document.getElementById("usage").innerText;
+
+  utterance = new SpeechSynthesisUtterance(text);
+
+  const voice = getChineseVoice();
+  if (voice) utterance.voice = voice;
+
+  utterance.lang = "zh-CN";
+  utterance.rate = getRate();
+
+  speechSynthesis.speak(utterance);
+}
+
+// 🎧 只读歌诀
+function speakMnemonic() {
+  stop();
+
+  let text = document.getElementById("mnemonic").innerText;
+
+  utterance = new SpeechSynthesisUtterance(text);
+
+  const voice = getChineseVoice();
+  if (voice) utterance.voice = voice;
+
+  utterance.lang = "zh-CN";
+  utterance.rate = getRate();
+
+  speechSynthesis.speak(utterance);
+}
+
+// 暂停 / 继续 / 停止
+function pause() { speechSynthesis.pause(); }
+function resume() { speechSynthesis.resume(); }
+function stop() { speechSynthesis.cancel(); }
+</script>
+
+<!-- 🌿 美化滑条CSS -->
+<style>
+#rate {
+  -webkit-appearance: none;
+  width: 100%;
+  max-width: 300px;
+  height: 8px;
+  border-radius: 6px;
+  background: linear-gradient(to right, #3498db 0%, #3498db 50%, #ddd 50%, #ddd 100%);
+  outline: none;
+  transition: background 0.3s;
+  margin-top: 5px;
+}
+
+/* 滑块样式 */
+#rate::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #3498db;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  transition: background 0.2s, transform 0.2s;
+}
+
+#rate::-webkit-slider-thumb:hover {
+  background: #3498db;
+  transform: scale(1.2);
+}
+
+/* Firefox */
+#rate::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #3498db;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+</style>
 
 </body>
 </html>

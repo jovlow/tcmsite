@@ -22,6 +22,8 @@
 
 <div class="card">
 <h1>🌿 香薷</h1>
+<h3 style="text-align:center;">[xiāng rú]</h3>
+<h3 style="text-align:center; color: #4792c5"><i>熟悉药</i></h3>
 
 <h3>📜 歌诀</h3>
 <p id="mnemonic">
@@ -41,21 +43,24 @@
   2. 水肿，小便不利，脚气浮肿
 </p>
 
+<h3>🧠 快快记忆口诀</h3>
+<p id="kkjkj" style="color:#b7a6d8">香薷发湿水。</p>
+
 <h3>🔊 朗读</h3>
 
-<button onclick="speakAll()">▶️ 朗读全部</button>
-<button onclick="speakMnemonic()">📜 只读歌诀</button>
+<button class="btn" onclick="speakAll()">▶️ 朗读全部</button>
+<button class="btn" onclick="speakMnemonic()">📜 只读歌诀</button>
 
 <!-- 🎚️ 美化语速滑条 -->
 <br><br>
 <label for="rate">语速：</label>
-<input type="range" id="rate" min="0.5" max="1.5" step="0.1" value="0.9">
+<input type="range" id="rate" min="0.5" max="1.5" step="0.1" value="0.9">&nbsp;
 <span id="rateValue">0.9</span>
 
 <br><br>
-<button onclick="pause()">⏸️ 暂停</button>
-<button onclick="resume()">▶️ 继续</button>
-<button onclick="stop()">⏹️ 停止</button>
+<button class="btn" onclick="pause()">⏸️ 暂停</button>
+<button class="btn" onclick="resume()">▶️ 继续</button>
+<button class="btn" onclick="stop()">⏹️ 停止</button>
 
 </div>
 
@@ -75,7 +80,7 @@ const rateValue = document.getElementById("rateValue");
 function updateRateBackground() {
   rateValue.innerText = rateSlider.value;
   const percent = (rateSlider.value - rateSlider.min) / (rateSlider.max - rateSlider.min) * 100;
-  rateSlider.style.background = `linear-gradient(to right, #4CAF50 0%, #4CAF50 ${percent}%, #ddd ${percent}%, #ddd 100%)`;
+  rateSlider.style.background = `linear-gradient(to right, #3498db 0%, #3498db ${percent}%, #ddd ${percent}%, #ddd 100%)`;
 }
 
 // 页面加载时初始化背景
@@ -147,7 +152,7 @@ function stop() { speechSynthesis.cancel(); }
   max-width: 300px;
   height: 8px;
   border-radius: 6px;
-  background: linear-gradient(to right, #4CAF50 0%, #4CAF50 50%, #ddd 50%, #ddd 100%);
+  background: linear-gradient(to right, #3498db 0%, #3498db 50%, #ddd 50%, #ddd 100%);
   outline: none;
   transition: background 0.3s;
   margin-top: 5px;
@@ -161,14 +166,14 @@ function stop() { speechSynthesis.cancel(); }
   height: 24px;
   border-radius: 50%;
   background: #fff;
-  border: 2px solid #4CAF50;
+  border: 2px solid #3498db;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
   transition: background 0.2s, transform 0.2s;
 }
 
 #rate::-webkit-slider-thumb:hover {
-  background: #4CAF50;
+  background: #3498db;
   transform: scale(1.2);
 }
 
@@ -178,7 +183,7 @@ function stop() { speechSynthesis.cancel(); }
   height: 24px;
   border-radius: 50%;
   background: #fff;
-  border: 2px solid #4CAF50;
+  border: 2px solid #3498db;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
